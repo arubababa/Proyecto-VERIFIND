@@ -1,0 +1,61 @@
+#INFORMACION
+
+[DOCKER]
+├── Docker
+│   ├── BBDD_VERIFIND
+│   ├── docker-compose.yml
+│   ├── information
+│   └── prometheus
+│       └── prometheus.yml
+
+
+[GRAFANA]
+Dirección URL: http://localhost:3000
+
+Descripción: Grafana es una herramienta de visualización de datos y métricas que te permite crear
+gráficos interactivos a partir de datos almacenados en diferentes fuentes, como Prometheus.
+
+Puerto Configurado: El puerto 3000 en tu máquina host está mapeado al puerto 3000 dentro 
+del contenedor de Grafana, lo que significa que puedes acceder a la interfaz web de Grafana 
+en http://localhost:3000.
+	
+	User:'admin'
+	pass:'pass1'
+
+[phpMyAdmin]
+Dirección URL: http://localhost:8080
+
+Descripción: phpMyAdmin es una herramienta de gestión de bases de datos MySQL accesible a través de una interfaz web. Facilita tareas como la administración de bases de datos, tablas, 
+usuarios y permisos.
+
+Puerto Configurado: El puerto 8080 en tu máquina host está mapeado al puerto 80 dentro del contenedor de phpMyAdmin. Esto significa que puedes acceder a la interfaz web de phpMyAdmin 
+en http://localhost:8080.
+
+	Servidor:'mysql'
+	User:'root'
+	pass:'admin'
+
+[APACHE]
+Archivos web en el Directorio de apache: /var/www/verifind
+/var/www/
+└── html
+    ├── index.html
+    ├── info.php
+    └── verifind
+        ├── pagina_explora.php
+        └── pagina_principal.php
+
+Configuracion de VirtualHost:  /etc/apache2/sites-available/verifind.conf
+
+#CONEXION:
+ $servername = "127.0.0.1"; // o "localhost"
+$username = "root";
+$password = "admin";
+$dbname = "verifind";
+
+Revisar logs de Apache: tail -f /var/log/apache2/error.log
+
+#Necesario bajar el modulo MySQLi para que funcione PHP
+sudo apt-get install php-mysql
+sudo systemctl restart apache2
+

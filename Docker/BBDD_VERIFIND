@@ -1,0 +1,285 @@
+--creacion de la base de datos llamada: VERIFIND
+
+
+CREATE TABLE USUARIOS (
+  ID_USUARIO    INT NOT NULL AUTO_INCREMENT,
+  NOMBRE        VARCHAR(100) DEFAULT NULL,
+  EMAIL         VARCHAR(100) UNIQUE,
+  TLF           VARCHAR(20) UNIQUE,
+  PASS          VARCHAR(60) NOT NULL,
+  FECHA_ALTA    VARCHAR(20) NOT NULL,
+  PRIMARY KEY (ID_USUARIO)
+);
+
+
+CREATE TABLE INCIDENCIAS (
+  ID_INCIDENCIA       INT NOT NULL AUTO_INCREMENT,
+  ID_USUARIO          INT,
+  TIPO_INC            VARCHAR(100) DEFAULT NULL,
+  TELEFONO_MALICIOSO  VARCHAR(20) DEFAULT NULL,
+  MAIL_MALICIOSO      VARCHAR(100),
+  IP_MALICIOSO       VARCHAR(100),
+  PRIMARY KEY (ID_INCIDENCIA),
+  FOREIGN KEY (ID_USUARIO) REFERENCES USUARIOS(ID_USUARIO)
+);
+
+
+CREATE TABLE REPORTES (
+  ID_REPORTE           INT NOT NULL AUTO_INCREMENT,
+  MAIL_MALICIOSO       VARCHAR(100),
+  TELEFONO_MALICIOSO   VARCHAR(20),
+  IP_MALICIOSO        VARCHAR(100),
+  NUM_REPORTE          INT,
+  TIPO_INC             VARCHAR(100),
+  PRIMARY KEY (ID_REPORTE)
+);
+
+-- Limpia las tablas si ya tienen datos
+DELETE FROM REPORTES;
+DELETE FROM INCIDENCIAS;
+DELETE FROM USUARIOS;
+
+-- Insertar datos en la tabla USUARIOS, pasada por la interfaz de creacion de usuario para que la contraseña este hasheada
+INSERT INTO USUARIOS (NOMBRE, EMAIL, TLF, PASS, FECHA_ALTA) VALUES
+('Alice Smith', 'alice.smith@example.com', '555-1234', '$2y$10$7QqZ0/F0Q0t0hPL14HdfrO63Z1HdptQ0h6GvHs5B6L.gWDFT4ClcO', '2024-01-01'),
+('Bob Johnson', 'bob.johnson@example.com', '555-5678', '$2y$10$5C0/M.xQGzZp.tUy5/wq3eqPmgP5EXwnPVGPojNmQ5ZkJeH8UBcNe', '2024-01-02'),
+('Carol Brown', 'carol.brown@example.com', '555-8765', '$2y$10$6BG3LZ..r7KY5L.rGOY3qefz9qH7OU4KfP/WiW8lNLm1fLmaMGG8C', '2024-01-03'),
+('David Wilson', 'david.wilson@example.com', '555-4321', '$2y$10$BqX.H8yZJym1f3J.dHytH.zM/AiY4OxBo4uv7L1uLMvLQ5p1GHkV.', '2024-01-04'),
+('Eva Martin', 'eva.martin@example.com', '555-3456', '$2y$10$w7BdRT.V6M8vCgj.FNXrv.5LkdJLhsGZ8P4hYHj.pwZpLsC.mnbW6', '2024-01-05'),
+('Frank Taylor', 'frank.taylor@example.com', '555-6543', '$2y$10$N4Vx9n6J.xHs/zNbZpd1H.r2k./VOzk8Xr4/hLSJgp..bLnh4h1mO', '2024-01-06'),
+('Grace Lewis', 'grace.lewis@example.com', '555-0987', '$2y$10$f8lS7/m8UtM/L1pKQvcL9OKW7Wh6k5LrJY5K0fMRYrEGu5nqLKb0K', '2024-01-07'),
+('Hank White', 'hank.white@example.com', '555-7890', '$2y$10$Sx0F.NZmY2KLq.X3GmhBHOv6Chrs5YF6K4X/QtgXzRchWyxD8JTuK', '2024-01-08'),
+('Ivy Green', 'ivy.green@example.com', '555-2109', '$2y$10$xf9/3dQJ2ZfBJ/Fv.JfJ..B43h2K./A6v9jLvIHSZOY6/a4mj2G.m', '2024-01-09'),
+('Jack Black', 'jack.black@example.com', '555-5432', '$2y$10$Kf/J.q3e5jZf7.gKfw5Z5.jnZ6U8kU6P3vMHDcJ7z4nLxL6mZf52G', '2024-01-10'),
+('Kate King', 'kate.king@example.com', '555-6789', '$2y$10$7G.ZqH0X5k/8WqZ5S4G8p.v4QH0Qd.rWz6zJrQ8K1G8N.vYJz8HYO', '2024-01-11'),
+('Leo Scott', 'leo.scott@example.com', '555-1235', '$2y$10$5F.TuK/XJ9Q3n.HZ4R3zH.ZmG.Lm2O6W4zJfO2M8Xk/5P3v5G4Q6J', '2024-01-12'),
+('Mia Clark', 'mia.clark@example.com', '555-6788', '$2y$10$7B.VzF4X2Q6N/5P4J8M3P.W7Qd.P3Y6W4xJgV8N1F9K/3n7V7Q1kN', '2024-01-13'),
+('Nina Young', 'nina.young@example.com', '555-9876', '$2y$10$5D.VqH4U3K/8X4Q5P9H8r.v5Qd.Q1W4Y5xKpO3N2F6J/1m3V6P2kM', '2024-01-14'),
+('Oscar Hill', 'oscar.hill@example.com', '555-2345', '$2y$10$7Q.LtF1Y5V/4J5N4S7H6p.v3Qd.R3Z5Y5xHpO1K2D8J/1m3P4T1lN', '2024-01-15'),
+('Pam Reed', 'pam.reed@example.com', '555-8764', '$2y$10$5E.RtF4W3L/9X2Q5N8K7r.v4Qd.P4X5Y5xJpO2N2C7J/1m3Q5T1mO', '2024-01-16'),
+('Quinn Adams', 'quinn.adams@example.com', '555-3457', '$2y$10$7E.QvH2Y3Q/6T5P4J6H7r.v5Qd.P5Y6W5xLpO2M1D7K/1m4P6U2kP', '2024-01-17'),
+('Rose Lee', 'rose.lee@example.com', '555-4567', '$2y$10$5F.WvG1Y4Q/9X3Q6N7H8r.v6Qd.Q6Z5Y5xKpO1N1C8K/1n3Q7U1mQ', '2024-01-18'),
+('Sam Carter', 'sam.carter@example.com', '555-6787', '$2y$10$7F.TvH3X5Q/8T4P5J7M8r.v7Qd.R1Y6W5xJpO3K2D9J/1m2P4V1lR', '2024-01-19'),
+('Tina Diaz', 'tina.diaz@example.com', '555-9875', '$2y$10$5G.UvI4Z2R/6V3Q6O8K7r.v8Qd.Q2Z5X5xKpO2M3E9K/1o3Q5T2nS', '2024-01-20'),
+('Uma Fox', 'uma.fox@example.com', '555-2346', '$2y$10$7H.VwG2Y3S/9Y2Q5P9L8r.v9Qd.P3X5W5xHpO1L2C7J/1m4P6T1oT', '2024-01-21'),
+('Vince Hall', 'vince.hall@example.com', '555-8763', '$2y$10$5H.TwI3X4Q/8X1Q6N7M7r.v5Qd.R3Z5Y5xJpO1K2D8K/1n2Q4U1mU', '2024-01-22'),
+('Wendy Knight', 'wendy.knight@example.com', '555-3458', '$2y$10$7I.UvG3Z5S/6Y4P7J6N6r.v6Qd.P5Y5X5xLpO2M1C9K/1m3P6T2oV', '2024-01-23'),
+('Xander Lowe', 'xander.lowe@example.com', '555-4568', '$2y$10$5J.VwH2Y4R/9X2Q5N8K7r.v7Qd.Q4Z5W5xHpO1N3E8K/1o3P5U1mW', '2024-01-24'),
+('Yara Moon', 'yara.moon@example.com', '555-6786', '$2y$10$7K.UwI1X2S/8T3Q6P9L8r.v8Qd.R2X5X5xJpO2K4D9K/1n2Q4T1lX', '2024-01-25'),
+('Zane Nash', 'zane.nash@example.com', '555-9874', '$2y$10$5L.TxJ3Z3Q/9Y1Q5O8M7r.v9Qd.Q3X5W5xHpO1L3C9K/1m2P6U2nY', '2024-01-26'),
+('Amy Olsen', 'amy.olsen@example.com', '555-2347', '$2y$10$7M.VxH4Y2S/9X2Q6N7L6r.v5Qd.P3Z5Y5xLpO2M4E8J/1o4P5T2mZ', '2024-01-27'),
+('Ben Park', 'ben.park@example.com', '555-8762', '$2y$10$5N.UxI2X3Q/8T4P5J7M7r.v6Qd.R1Y6X5xHpO1K3C9J/1m2Q4U1oA', '2024-01-28'),
+('Cathy Queen', 'cathy.queen@example.com', '555-3459', '$2y$10$7O.VxG3Z5S/6V3Q6P8N6r.v7Qd.P5X5W5xJpO2M2D9K/1o3P6T1nB', '2024-01-29'),
+('Dan Ross', 'dan.ross@example.com', '555-4569', '$2y$10$5P.VyH2Y4R/9X2Q5N8L7r.v8Qd.Q4Z5X5xHpO1L4C8K/1n3P5U1mC', '2024-01-30'),
+('Ella Scott', 'ella.scott@example.com', '555-6785', '$2y$10$7Q.VyI1X2S/8T3Q6P9M8r.v9Qd.R2X5X5xJpO1K5D9K/1m2Q4T2lD', '2024-01-31'),
+('Fred Turner', 'fred.turner@example.com', '555-9873', '$2y$10$5R.TzJ3Z3Q/9Y1Q5O8N7r.v9Qd.Q3X5W5xHpO1L5C9J/1n2P6U1mE', '2024-02-01'),
+('Gina Underwood', 'gina.underwood@example.com', '555-2348', '$2y$10$7S.VyH4Y2S/9X2Q6N7L8r.v5Qd.P3Z5Y5xLpO1M4E8J/1o4P5T1mF', '2024-02-02'),
+('Henry Vega', 'henry.vega@example.com', '555-8761', '$2y$10$5T.UzI2X3Q/8T4P5J7N7r.v6Qd.R1Y6X5xHpO2K3C9K/1m2Q4U1nG', '2024-02-03'),
+('Isabel Walker', 'isabel.walker@example.com', '555-3460', '$2y$10$7U.VyG3Z5S/6V3Q6P8M6r.v7Qd.P5X5W5xJpO1M2D8K/1o3P6T1lH', '2024-02-04'),
+('Jack Xavier', 'jack.xavier@example.com', '555-4570', '$2y$10$5V.WzH2Y4R/9X2Q5N8K7r.v8Qd.Q4Z5X5xHpO2L3C9K/1n3P5U1mI', '2024-02-05'),
+('Kelly Young', 'kelly.young@example.com', '555-6784', '$2y$10$7W.VzI1X2S/8T3Q6P9L8r.v9Qd.R2X5X5xJpO2K5D8K/1m2Q4T1lJ', '2024-02-06'),
+('Liam Zane', 'liam.zane@example.com', '555-9872', '$2y$10$5X.WzJ3Z3Q/9Y1Q5O8M7r.v9Qd.Q3X5W5xHpO2L4C9K/1n2P6U1mK', '2024-02-07'),
+('Megan Allen', 'megan.allen@example.com', '555-2349', '$2y$10$7Y.VzH4Y2S/9X2Q6N7L8r.v5Qd.P3Z5Y5xLpO2M4E9K/1o4P5T1mL', '2024-02-08'),
+('Nolan Baker', 'nolan.baker@example.com', '555-8760', '$2y$10$5Z.UzI2X3Q/8T4P5J7N7r.v6Qd.R1Y6X5xHpO2K3C9K/1m2Q4U1nM', '2024-02-09'),
+('Olivia Clark', 'olivia.clark@example.com', '555-3461', '$2y$10$7A.VzG3Z5S/6V3Q6P8M6r.v7Qd.P5X5W5xJpO2M2D9K/1o3P6T1lN', '2024-02-10'),
+('Peter Davis', 'peter.davis@example.com', '555-4571', '$2y$10$5B.WzH2Y4R/9X2Q5N8K7r.v8Qd.Q4Z5X5xHpO2L3C9K/1n3P5U1mO', '2024-02-11'),
+('Quincy Evans', 'quincy.evans@example.com', '555-6783', '$2y$10$7C.WzI1X2S/8T3Q6P9L8r.v9Qd.R2X5X5xJpO2K5D9K/1m2Q4T1lP', '2024-02-12'),
+('Rachel Foster', 'rachel.foster@example.com', '555-9871', '$2y$10$5D.XzJ3Z3Q/9Y1Q5O8M7r.v9Qd.Q3X5W5xHpO2L4C9K/1n2P6U1mQ', '2024-02-13'),
+('Simon Grant', 'simon.grant@example.com', '555-2350', '$2y$10$7E.XzH4Y2S/9X2Q6N7L8r.v5Qd.P3Z5Y5xLpO2M4E9K/1o4P5T1mR', '2024-02-14'),
+('Tara Howard', 'tara.howard@example.com', '555-8759', '$2y$10$5F.XzI2X3Q/8T4P5J7N7r.v6Qd.R1Y6X5xHpO2K3C9K/1m2Q4U1nS', '2024-02-15'),
+('Ursula Ingram', 'ursula.ingram@example.com', '555-3462', '$2y$10$7G.XzG3Z5S/6V3Q6P8M6r.v7Qd.P5X5W5xJpO2M2D9K/1o3P6T1lT', '2024-02-16'),
+('Victor James', 'victor.james@example.com', '555-4572', '$2y$10$5H.YzH2Y4R/9X2Q5N8K7r.v8Qd.Q4Z5X5xHpO2L3C9K/1n3P5U1mU', '2024-02-17');
+
+
+-- Insertar datos en la tabla INCIDENCIAS
+INSERT INTO INCIDENCIAS (ID_USUARIO, TIPO_INC, TELEFONO_MALICIOSO, MAIL_MALICIOSO, IP_MALICIOSO) VALUES
+(1, 'mail', NULL, 'malicious1@example.com', NULL),
+(2, 'telefono', '555-9999', NULL, NULL),
+(3, 'ip', NULL, NULL, '192.168.1.1'),
+(4, 'mail', NULL, 'malicious2@example.com', NULL),
+(5, 'telefono', '555-8888', NULL, NULL),
+(6, 'ip', NULL, NULL, '192.168.1.2'),
+(7, 'mail', NULL, 'malicious3@example.com', NULL),
+(8, 'telefono', '555-7777', NULL, NULL),
+(9, 'ip', NULL, NULL, '192.168.1.3'),
+(10, 'mail', NULL, 'malicious4@example.com', NULL),
+(11, 'telefono', '555-6666', NULL, NULL),
+(12, 'ip', NULL, NULL, '192.168.1.4'),
+(13, 'mail', NULL, 'malicious5@example.com', NULL),
+(14, 'telefono', '555-5555', NULL, NULL),
+(15, 'ip', NULL, NULL, '192.168.1.5'),
+(16, 'mail', NULL, 'malicious6@example.com', NULL),
+(17, 'telefono', '555-4444', NULL, NULL),
+(18, 'ip', NULL, NULL, '192.168.1.6'),
+(19, 'mail', NULL, 'malicious7@example.com', NULL),
+(20, 'telefono', '555-3333', NULL, NULL),
+(21, 'ip', NULL, NULL, '192.168.1.7'),
+(22, 'mail', NULL, 'malicious8@example.com', NULL),
+(23, 'telefono', '555-2222', NULL, NULL),
+(24, 'ip', NULL, NULL, '192.168.1.8'),
+(25, 'mail', NULL, 'malicious9@example.com', NULL),
+(26, 'telefono', '555-1111', NULL, NULL),
+(27, 'ip', NULL, NULL, '192.168.1.9'),
+(28, 'mail', NULL, 'malicious10@example.com', NULL),
+(29, 'telefono', '555-1010', NULL, NULL),
+(30, 'ip', NULL, NULL, '192.168.1.10'),
+(31, 'mail', NULL, 'malicious11@example.com', NULL),
+(32, 'telefono', '555-2020', NULL, NULL),
+(33, 'ip', NULL, NULL, '192.168.1.11'),
+(34, 'mail', NULL, 'malicious12@example.com', NULL),
+(35, 'telefono', '555-3030', NULL, NULL),
+(36, 'ip', NULL, NULL, '192.168.1.12'),
+(37, 'mail', NULL, 'malicious13@example.com', NULL),
+(38, 'telefono', '555-4040', NULL, NULL),
+(39, 'ip', NULL, NULL, '192.168.1.13'),
+(40, 'mail', NULL, 'malicious14@example.com', NULL),
+(41, 'telefono', '555-5050', NULL, NULL),
+(42, 'ip', NULL, NULL, '192.168.1.14'),
+(43, 'mail', NULL, 'malicious15@example.com', NULL),
+(44, 'telefono', '555-6060', NULL, NULL),
+(45, 'ip', NULL, NULL, '192.168.1.15'),
+(46, 'mail', NULL, 'malicious16@example.com', NULL),
+(47, 'telefono', '555-7070', NULL, NULL),
+(48, 'ip', NULL, NULL, '192.168.1.16');
+
+
+--FUNCIONES 
+DELIMITER //
+CREATE FUNCTION	ContadorReportesMail(mail VARCHAR(100))
+RETURNS INT
+BEGIN
+    DECLARE mailCount INT;
+    SET mailCount = (SELECT COUNT(*) FROM INCIDENCIAS WHERE MAIL_MALICIOSO = mail AND TIPO_INC = 'mail');
+    RETURN mailCount;
+END //
+DELIMITER ;
+
+--verificacion
+SELECT ContadorReportesMail('example@example.com');
+
+
+
+DELIMITER //
+CREATE FUNCTION	ContadorReportesTelefono(phone VARCHAR(20))
+RETURNS INT
+BEGIN
+    DECLARE phoneCount INT;
+    SET phoneCount = (SELECT COUNT(*) FROM INCIDENCIAS WHERE TELEFONO_MALICIOSO = phone AND TIPO_INC = 'telefono');
+    RETURN phoneCount;
+END  //
+DELIMITER ;
+
+--verificacion
+SELECT ContadorReportesTelefono('<tlf_exameple>');
+
+
+
+
+DELIMITER //
+CREATE FUNCTION ContadorReportesIP(ip VARCHAR(100))
+RETURNS INT
+BEGIN
+    DECLARE ipCount INT;
+    SET ipCount = (SELECT COUNT(*) FROM INCIDENCIAS WHERE IP_MALICIOSO = ip AND TIPO_INC = 'ip');
+    RETURN ipCount;
+END //
+DELIMITER ;
+
+--verificacion
+SELECT ContadorReportesIP('<ip_example>');
+
+
+--PROCEDIMIENTOS
+DELIMITER //
+CREATE PROCEDURE UpdateReportes()
+BEGIN
+    DECLARE mail VARCHAR(100);
+    DECLARE phone VARCHAR(20);
+    DECLARE ip VARCHAR(100);
+    DECLARE mailCount, phoneCount, ipCount INT;
+    DECLARE done INT DEFAULT 0;
+    
+    -- Declaración de cursores
+    DECLARE mailCursor CURSOR FOR 
+    SELECT MAIL_MALICIOSO FROM INCIDENCIAS WHERE TIPO_INC = 'mail' GROUP BY MAIL_MALICIOSO;
+    
+    DECLARE phoneCursor CURSOR FOR 
+    SELECT TELEFONO_MALICIOSO FROM INCIDENCIAS WHERE TIPO_INC = 'telefono' GROUP BY TELEFONO_MALICIOSO;
+    
+    DECLARE ipCursor CURSOR FOR 
+    SELECT IP_MALICIOSO FROM INCIDENCIAS WHERE TIPO_INC = 'ip' GROUP BY IP_MALICIOSO;
+
+    -- Handler para finalizar los cursores
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    -- Procesar reportes por mail
+    OPEN mailCursor;
+    read_mail: LOOP
+        FETCH mailCursor INTO mail;
+        IF done THEN 
+            LEAVE read_mail; 
+        END IF;
+        SET mailCount = ContadorReportesMail(mail);
+        IF EXISTS (SELECT 1 FROM REPORTES WHERE MAIL_MALICIOSO = mail) THEN
+            UPDATE REPORTES SET NUM_REPORTE = mailCount WHERE MAIL_MALICIOSO = mail;
+        ELSE
+            INSERT INTO REPORTES (MAIL_MALICIOSO, NUM_REPORTE, TIPO_INC) VALUES (mail, mailCount, 'mail');
+        END IF;
+    END LOOP;
+    CLOSE mailCursor;
+    SET done = 0; -- Reset done for the next cursor
+
+    -- Procesar reportes por teléfono
+    OPEN phoneCursor;
+    read_phone: LOOP
+        FETCH phoneCursor INTO phone;
+        IF done THEN 
+            LEAVE read_phone; 
+        END IF;
+        SET phoneCount = ContadorReportesTelefono(phone);
+        IF EXISTS (SELECT 1 FROM REPORTES WHERE TELEFONO_MALICIOSO = phone) THEN
+            UPDATE REPORTES SET NUM_REPORTE = phoneCount WHERE TELEFONO_MALICIOSO = phone;
+        ELSE
+            INSERT INTO REPORTES (TELEFONO_MALICIOSO, NUM_REPORTE, TIPO_INC) VALUES (phone, phoneCount, 'telefono');
+        END IF;
+    END LOOP;
+    CLOSE phoneCursor;
+    SET done = 0; -- Reset done for the next cursor
+
+    -- Procesar reportes por IP
+    OPEN ipCursor;
+    read_ip: LOOP
+        FETCH ipCursor INTO ip;
+        IF done THEN 
+            LEAVE read_ip; 
+        END IF;
+        SET ipCount = ContadorReportesIP(ip);
+        IF EXISTS (SELECT 1 FROM REPORTES WHERE IP_MALICIOSO = ip) THEN
+            UPDATE REPORTES SET NUM_REPORTE = ipCount WHERE IP_MALICIOSO = ip;
+        ELSE
+            INSERT INTO REPORTES (IP_MALICIOSO, NUM_REPORTE, TIPO_INC) VALUES (ip, ipCount, 'ip');
+        END IF;
+    END LOOP;
+    CLOSE ipCursor;
+END //
+DELIMITER ;
+
+
+--verificar su existencia
+SHOW PROCEDURE STATUS WHERE Db = 'verifind';
+--llamada del procedimiento
+CALL UpdateReportes();
+
+
+--EVENTOS
+-- Habilitar el programador de eventos (si no está habilitado)
+SET GLOBAL event_scheduler = ON;
+
+-- Crear el evento que ejecuta el procedimiento cada una hora
+CREATE EVENT EventoUpdateReportes
+ON SCHEDULE EVERY 1 HOUR
+DO
+  CALL UpdateReportes();
+
+-- Verificar que el evento se ha creado
+SHOW EVENTS;
