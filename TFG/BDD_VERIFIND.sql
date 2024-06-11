@@ -43,18 +43,9 @@ DELETE FROM USUARIOS;
 
 -- Insertar datos en la tabla USUARIOS, pasada por la interfaz de creacion de usuario para que la contraseña este hasheada
 INSERT INTO USUARIOS (NOMBRE, EMAIL, TLF, PASS, FECHA_ALTA) VALUES 
-('Usuario1', 'usuario1@example.com', '1234567890', 'password1', '2022-01-01'),
-('Usuario2', 'usuario2@example.com', '0987654321', 'password2', '2022-01-01');
-('Usuario3', 'usuario3@example.com', '1234509876', 'password3', '2022-01-01');
 
 -- Insertar datos en la tabla INCIDENCIAS
 INSERT INTO INCIDENCIAS (ID_USUARIO, TIPO_INC, TELEFONO_MALICIOSO, MAIL_MALICIOSO, IP_MALICIOSO) VALUES
-(1, 'mail', NULL, 'malicious1@example.com', NULL),
-(1, 'mail', NULL, 'malicious2@example.com', NULL),
-(1, 'telefono', '1234567890', NULL, NULL),
-(2, 'telefono', '1234567890', NULL, NULL),
-(2, 'ip', NULL, NULL, '192.168.0.1'),
-(2, 'ip', NULL, NULL, '192.168.0.2');
 
 
 --FUNCIONES 
