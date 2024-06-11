@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Iniciar Sesión</title>
+    <link rel="icon" type="image/x-icon" href="./favi.ico"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('portada2.JPG');
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu {
+            background-color: white;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10; 
+        }
+        .menu a {
+            float: left;
+            display: block;
+            color: #40533F;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .menu a:hover {
+            background-color: #AED6F1;
+        }
+        h1 {
+            color: #AED6F1;
+            text-align: center;
+            font-size: 60px;
+            font-family: 'Times New Roman', Times, serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            margin-top: 150px;
+            position: relative;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .Buscador2 {
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            position: absolute;
+            top: 40%;
+            left: 5%;
+            border-radius: 10px;
+        }
+        .form-container {
+            position: absolute;
+            top: 60%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: auto;
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: auto;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background-color: #AED6F1;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3498db;
+        }
+        footer.pie-pagina {
+            width: 100%;
+            background-color: #AED6F1;
+            color: #40533F;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+        }
+        .copy small {
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="./pagina_principal1.php">Home</a>
+        <a href="./pagina_explora.html">Explora</a>
+        <a style="float:right;" href="#">Iniciar Sesion | Registrarse</a>
+    </div>
+
+    <h1>Iniciar Sesión</h1>
+
+    <div class="form-container">
+        <form action="login.php" method="post">
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email" required/><br>
+            <br>
+            <label for="pass">Contraseña:</label><br>
+            <input type="password" id="pass" name="pass" required/><br>
+            <br>
+            <input type="submit" name='ENVIAR' value="ENVIAR">
+        </form>
+        <p>¿No tienes una cuenta? <a href="./register.php">Registrarse</a></p>
+    </div>
+
+    <footer class="pie-pagina">
+        <div class="copy">
+            <small>&copy; 2024 <b>Verifind</b> - Todos los Derechos Reservados.</small>
+        </div>
+    </footer>
+</body>
+</html>
